@@ -1,0 +1,10 @@
+{:builds {:app {:target :node-script
+                :output-to "target/app.js"
+                :main app.core/main!}
+          :lib {:target :node-library
+                :output-to "target/lib.js"
+                :exports {:handler app.lambda/lambda-handler}}}
+ :source-paths ["src"]
+ :nrepl {:port 3333
+         :init-ns app.core
+         :middleware []}}

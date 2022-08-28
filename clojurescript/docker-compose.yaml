@@ -1,0 +1,13 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+    environment:
+      DEBUG: 1
+      LAMBDA_DOCKER_FLAGS: -p 19891:19891
+      LAMBDA_REMOTE_DOCKER: 0
+      SERVICES: lambda,s3,stepfunctions
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

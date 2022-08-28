@@ -1,0 +1,7 @@
+awslocal lambda create-function --function-name test1 \
+    --code S3Bucket="__local__",S3Key="$PWD/target" \
+    --handler lib.handler \
+    --runtime nodejs14.x \
+    --role foo
+
+awslocal lambda invoke --function-name test1 out.txt

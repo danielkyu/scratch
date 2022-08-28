@@ -1,0 +1,6 @@
+aws:
+  access_key_id: access-key-id
+  endpoint_url: http://localstack:4566
+  region: us-west-2
+  secret_access_key: secret-access-key
+env: dev

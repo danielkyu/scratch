@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "gradle",
+      "id": "/Users/daniel/dev/projects/scratch/java/api-serverbuildapi-server",
+      "script": "build",
+      "description": "Assembles and tests this project.",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "project": "api-server",
+      "buildFile": "/Users/daniel/dev/projects/scratch/java/api-server/build.gradle",
+      "rootProject": "api-server",
+      "projectFolder": "/Users/daniel/dev/projects/scratch/java/api-server",
+      "workspaceFolder": "/Users/daniel/dev/projects/scratch/java/api-server",
+      "args": "",
+      "javaDebug": false,
+      "problemMatcher": ["$gradle"],
+      "label": "gradle: build"
+    }
+  ]
+}

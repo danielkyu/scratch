@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "/Users/daniel/dev/projects/scratch/java/event-servicebuildevent-service",
+			"script": "build",
+			"description": "Assembles and tests this project.",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"project": "event-service",
+			"buildFile": "/Users/daniel/dev/projects/scratch/java/event-service/build.gradle",
+			"rootProject": "event-service",
+			"projectFolder": "/Users/daniel/dev/projects/scratch/java/event-service",
+			"workspaceFolder": "/Users/daniel/dev/projects/scratch/java/event-service",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: build"
+		}
+	]
+}

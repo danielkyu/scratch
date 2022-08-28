@@ -1,0 +1,75 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  mavenCentral()
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies {
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.40.5'
+  annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+  compileOnly 'org.projectlombok:lombok:1.18.22'
+
+  implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+  implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.1'
+  implementation 'com.google.dagger:dagger:2.40.5'
+  implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+  implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+  implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+  implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+  implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+  implementation 'org.apache.logging.log4j:log4j-core:2.17.2'
+  implementation 'org.bouncycastle:bcprov-ext-jdk15on:1.70'
+
+  runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.5.0'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['src/main/java', 'build/generated/sources/annotationProcessor/java/main']
+    }
+  }
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
+
+task buildZip(type: Zip) {
+  from compileJava
+  from processResources
+
+  into('lib') {
+    from configurations.runtimeClasspath
+  }
+}
+
+task foo(type: Copy) {
+  from compileJava
+  from processResources
+
+  into('foo') {
+    from configurations.runtimeClasspath
+  }
+}
+
+task unpack(type: Copy) {
+  from zipTree("${project.buildDir}/distributions/event-service.zip")
+  into "${project.buildDir}/hot"
+}
+
+unpack.dependsOn buildZip
+
+build.dependsOn buildZip
+build.dependsOn unpack

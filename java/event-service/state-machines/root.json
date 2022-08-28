@@ -1,0 +1,10 @@
+{
+  "StartAt": "hello-world",
+  "States": {
+    "hello-world": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:event-service_hello-world",
+      "End": true
+    }
+  }
+}

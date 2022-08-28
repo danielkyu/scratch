@@ -1,0 +1,10 @@
+awslocal lambda create-function --function-name test \
+    --code S3Bucket="__local__",S3Key="$PWD/build/hot" \
+    --handler com.danielkyu.templates.eventservice.handlers.HelloWorldRequestHandler \
+    --runtime java11 \
+    --timeout 10 \
+    --role foo
+
+awslocal lambda invoke --function-name test out.txt
+
+gw build

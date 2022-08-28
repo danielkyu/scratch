@@ -1,0 +1,28 @@
+# Create project
+pipenv --python $(pyenv which python) shell
+
+# Initialize project
+pipenv install --dev
+
+# Freeze dependencies
+pipenv lock
+
+# Initialize project from Pipfile.lock
+pipenv install --ignore-pipfile
+
+pipenv shell
+flask run
+
+
+docker build -f lambda.Dockerfile -t pylambda .
+docker run -p 9000:8080 pylambda
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+
+
+awslocal lambda create-function --function-name test \
+    --code S3Bucket="__local__",S3Key="$PWD" \
+    --handler lambda.lambda.lambda_handler \
+    --runtime python3.9 \
+    --role foo
+
+awslocal lambda invoke --function-name test out.txt
